@@ -81,15 +81,16 @@ namespace ClassLibrary
 
         public bool Find(int staffID)
         {
-            //set the private data members to the test data value
+            //set the private data members to teh test data value
             mStaffID = 21;
-            mStartDate = Convert.ToDateTime("16/9/2015");
             mUsername = "Username";
             mPassword = "Password";
             mRole = "Role";
             mAdmin = true;
-            //always return true 
+            mStartDate = Convert.ToDateTime("16/09/2015");
+            //always retrun true
             return true;
+            
         }
     }
 
