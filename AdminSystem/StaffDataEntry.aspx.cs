@@ -22,9 +22,9 @@ public partial class _1_DataEntry : System.Web.UI.Page
         AnStaff.Username = txtUsername.Text;
         AnStaff.Password = txtPassword.Text;
         AnStaff.Role = txtRole.Text;
-        //AnStaff.StartDate = txtStartDate.Text;
+        AnStaff.StartDate = Convert.ToDateTime(txtStartDate.Text);
         AnStaff.Admin = chkAdmin.Checked;
-        //AnStaff.StaffID = txtStaffID.Text;
+        AnStaff.StaffID = Convert.ToInt32(txtStaffID.Text);
         //store the Username in the Session Object
         Session["AnStaff"] = AnStaff;
         //naviage to the viewer page
