@@ -4,15 +4,20 @@ using System;
 
 namespace Testing4
 {
+
     [TestClass]
     public class CustomerTest
     {
+
+
         [TestMethod]
         public void TestConstruct()
         {
             clsCustomer Customer = new clsCustomer();
             Assert.IsNotNull(Customer);
         }
+
+      
 
         [TestMethod]
         public void TestCustomerNoFound()
