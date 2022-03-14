@@ -17,14 +17,29 @@ namespace ClassLibrary
 
         public bool Find(int customerNo)
         {
-            mID = 21;
-            mUsername = "harry0198";
-            mPassword = "password";
-            mActive = true;
-            mAddress = "dmu";
-            mDateAdded = Convert.ToDateTime("16/9/2015");
-            
-            return true;
+            // Create an instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+            // add param for customer id
+            DB.AddParameter("@CustomerID", customerNo);
+            // execute stored proc
+            DB.Execute("sproc_tblCustomer_FilterByCustomerID");
+            // If one record is found
+            if (DB.Count == 1)
+            {
+                mID = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerID"]);
+                mUsername = Convert.ToString(DB.DataTable.Rows[0]["CustomerUsername"]);
+                mPassword = Convert.ToString(DB.DataTable.Rows[0]["CustomerPassword"]);
+                mActive = Convert.ToBoolean(DB.DataTable.Rows[0]["AccountActive"]);
+                mAddress = Convert.ToString(DB.DataTable.Rows[0]["CustomerAddress"]);
+                mDateAdded = Convert.ToDateTime(DB.DataTable.Rows[0]["AccountCreationDate"]);
+                // Return true indicating everything worked ok
+                return true;
+            }
+            else
+            {
+                // return false indicating a proble
+                return false;
+            }
         }
 
         // CustomerID public property

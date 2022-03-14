@@ -24,11 +24,11 @@ namespace Testing4
             // Boolean variable to record if data is OK
             Boolean OK = true;
             // Create some test data to use with the method
-            Int32 CustomerNo = 21;
+            Int32 CustomerNo = 4;
             // Invoke method
             Found = ACustomer.Find(CustomerNo);
             // Check customer No
-            if (ACustomer.ID != 21)
+            if (ACustomer.ID != 4)
             {
                 OK = false;
             }
@@ -46,11 +46,11 @@ namespace Testing4
             // Boolean variable to record if data is OK
             Boolean OK = true;
             // Create some test data to use with the method
-            Int32 CustomerNo = 21;
+            Int32 CustomerNo = 4;
             // Invoke method
             Found = ACustomer.Find(CustomerNo);
             // Check customer name
-            if (ACustomer.Username != "harry0198")
+            if (ACustomer.Username != "ExampleCustomer")
             {
                 OK = false;
             }
@@ -68,11 +68,11 @@ namespace Testing4
             // Boolean variable to record if data is OK
             Boolean OK = true;
             // Create some test data to use with the method
-            Int32 CustomerNo = 21;
+            Int32 CustomerNo = 4;
             // Invoke method
             Found = ACustomer.Find(CustomerNo);
             // Check customer password
-            if (ACustomer.Password != "password")
+            if (ACustomer.Password != "ExamplePass")
             {
                 OK = false;
             }
@@ -90,11 +90,11 @@ namespace Testing4
             // Boolean variable to record if data is OK
             Boolean OK = true;
             // Create some test data to use with the method
-            Int32 CustomerNo = 21;
+            Int32 CustomerNo = 4;
             // Invoke method
             Found = ACustomer.Find(CustomerNo);
             // Check customer date added
-            if (ACustomer.DateAdded != Convert.ToDateTime("16/9/2015"))
+            if (ACustomer.DateAdded != Convert.ToDateTime("02/02/2022"))
             {
                 OK = false;
             }
@@ -112,7 +112,7 @@ namespace Testing4
             // Boolean variable to record if data is OK
             Boolean OK = true;
             // Create some test data to use with the method
-            Int32 CustomerNo = 21;
+            Int32 CustomerNo = 4;
             // Invoke method
             Found = ACustomer.Find(CustomerNo);
             // Check customer active
@@ -134,11 +134,11 @@ namespace Testing4
             // Boolean variable to record if data is OK
             Boolean OK = true;
             // Create some test data to use with the method
-            Int32 CustomerNo = 21;
+            Int32 CustomerNo = 1;
             // Invoke method
             Found = ACustomer.Find(CustomerNo);
             // Check customer address
-            if (ACustomer.Address != "dmu")
+            if (ACustomer.Address != "Address")
             {
                 OK = false;
             }
@@ -154,7 +154,7 @@ namespace Testing4
             // Boolean variable to store results of validation
             Boolean Found = false;
             // Create some test data to use with the method
-            Int32 CustomerNo = 21;
+            Int32 CustomerNo = 1;
             // Invoke the method
             Found = ACustomer.Find(CustomerNo);
             // Test to see if the result is true
