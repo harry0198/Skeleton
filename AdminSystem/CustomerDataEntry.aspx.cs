@@ -18,16 +18,29 @@ public partial class _1_DataEntry : System.Web.UI.Page
         // Create a new instance of clsCustomer
         clsCustomer Customer = new clsCustomer();
         // Capture the customer values
-        Customer.Username = txtCustomerUsername.Text;
-        Customer.Password = txtCustomerPassword.Text;
-        //Customer.DateAdded = txtCustomerDateAdded.Text;
-        Customer.Active = cbxCustomerActive.Checked;
-        //Customer.ID = txtCustomerNo.Text;
-        Customer.Address = txtCustomerAddress.Text;
-        // Store ID in session object
-        Session["Customer"] = Customer;
-        // Navigate to the viewer page
-        Response.Redirect("CustomerViewer.aspx");
+        string CustomerId = txtCustomerNo.Text;
+        string CustomerUsername = txtCustomerUsername.Text;
+        string CustomerPassword = txtCustomerPassword.Text;
+        string CustomerAddress = txtCustomerAddress.Text;
+        string CustomerValid = cbxCustomerActive.Checked.ToString();
+        string CustomerDateAdded = txtCustomerDateAdded.Text;
+        string Error = "";
+        Error = Customer.Valid(CustomerId, CustomerUsername, CustomerPassword, CustomerAddress, CustomerDateAdded, CustomerValid);
+        if (Error == "")
+        {
+            Customer.ID = Convert.ToInt32(CustomerId);
+            Customer.Username = CustomerUsername;
+            Customer.Password = CustomerPassword;
+            Customer.Address = CustomerAddress;
+            Customer.Active = Convert.ToBoolean(CustomerValid);
+            Customer.DateAdded = Convert.ToDateTime(CustomerDateAdded);
+            Session["ACustomer"] = Customer;
+            Response.Write("CustomerViewer.aspx");
+        } else
+        {
+            lblError.Text = Error;
+        }
+    
     }
 
     protected void btnFind_Click(object sender, EventArgs e)
@@ -39,7 +52,15 @@ public partial class _1_DataEntry : System.Web.UI.Page
         // var to store result of find oper
         Boolean Found = false;
         // Get primary key entered
-        CustomerID = Convert.ToInt32(txtCustomerNo.Text);
+
+        try
+        {
+            CustomerID = Convert.ToInt32(txtCustomerNo.Text);
+        } catch (FormatException ex)
+        {
+            return;
+        }
+        
         // find record
         Found = ACustomer.Find(CustomerID);
         // if found
