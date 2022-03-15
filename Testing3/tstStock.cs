@@ -24,9 +24,9 @@ namespace Testing3
             //create some test data to assign to the property
             Int32 TestData = 45;
             //assign the data to the property
-            Stock.gameID = TestData;
+            Stock.GameID = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(Stock.gameID, TestData);
+            Assert.AreEqual(Stock.GameID, TestData);
         }
 
         [TestMethod]
@@ -93,6 +93,169 @@ namespace Testing3
             //test to see that the two values are the same
             Assert.AreEqual(AnAddress.AgeRat, TestData);
         }
+
+        [TestMethod]
+        public void FindMethodOK()
+        {
+        
+            clsStock AnStock = new clsStock();
+            
+            Boolean Found = false;
+
+            String GameNm = "Basketball";
+
+            Found = AnStock.Find(GameNm);
+
+            Assert.IsTrue(Found);
+        }
+
+        [TestMethod]
+        public void TestGameIDFound()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //boolean variable to store the result of the search
+            Boolean Found = false;
+            //boolean variable to record if data is OK (asume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            String GameNm = "Basketball";
+            //invoke the method
+            Found = AnStock.Find(GameNm);
+            //check the address no
+            if (AnStock.GameID != 25)
+            {
+                OK = false;
+            }
+            //test to see the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestGameNmFound()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //boolean variable to store the result of the search
+            Boolean Found = false;
+            //boolean variable to record if data is OK (asume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            String GameNm = "Basketball";
+            //invoke the method
+            Found = AnStock.Find(GameNm);
+            //check the address no
+            if (AnStock.GameNm != "Basketball")
+            {
+                OK = false;
+            }
+            //test to see the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestPriceFound()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //boolean variable to store the result of the search
+            Boolean Found = false;
+            //boolean variable to record if data is OK (asume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            String GameNm = "Basketball";
+            //invoke the method
+            Found = AnStock.Find(GameNm);
+            //check the address no
+            if (AnStock.Price != 25)
+            {
+                OK = false;
+            }
+            //test to see the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestAvailabilityFound()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //boolean variable to store the result of the search
+            Boolean Found = false;
+            //boolean variable to record if data is OK (asume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            String GameNm = "Basketball";
+            //invoke the method
+            Found = AnStock.Find(GameNm);
+            //check the address no
+            if (AnStock.Active != true)
+            {
+                OK = false;
+            }
+            //test to see the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestReleaseDateFound()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //boolean variable to store the result of the search
+            Boolean Found = false;
+            //boolean variable to record if data is OK (asume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            String GameNm = "Basketball";
+            //invoke the method
+            Found = AnStock.Find(GameNm);
+            //check the address no
+            if (AnStock.DateAdded != Convert.ToDateTime("16/09/2015"))
+            {
+                OK = false;
+            }
+            //test to see the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestAgeRatFound()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //boolean variable to store the result of the search
+            Boolean Found = false;
+            //boolean variable to record if data is OK (asume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            String GameNm = "Basketball";
+            //invoke the method
+            Found = AnStock.Find(GameNm);
+            //check the address no
+            if (AnStock.AgeRat != 15)
+            {
+                OK = false;
+            }
+            //test to see the result is correct
+            Assert.IsTrue(OK);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 }

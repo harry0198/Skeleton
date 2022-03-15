@@ -9,22 +9,22 @@
 <body>
     <form id="form1" runat="server">
         <div>
-        <asp:Label ID="lblGameID" runat="server" Text="Game ID" width="80px"></asp:Label>
-        &nbsp;<asp:TextBox ID="txtGameID" runat="server"></asp:TextBox>
+        <asp:Label ID="lblGameID" runat="server" Text="Game ID" width="118px"></asp:Label>
+        &nbsp;<asp:TextBox ID="txtGameID" runat="server" Width="134px"></asp:TextBox>
         <br />
-        <asp:Label ID="lblGameName" runat="server" Text="Game Name" width="80px"></asp:Label>
-        &nbsp;<asp:TextBox ID="txtGameName" runat="server"></asp:TextBox>
+        <asp:Label ID="lblGameName" runat="server" Text="Game Name" width="118px"></asp:Label>
+        &nbsp;<asp:TextBox ID="txtGameName" runat="server" width="134px"></asp:TextBox>
         <br />
-        <asp:Label ID="lblPrice" runat="server" Text="Price" width="80px"></asp:Label>
-        &nbsp;<asp:TextBox ID="txtPrice" runat="server"></asp:TextBox>
+        <asp:Label ID="lblPrice" runat="server" Text="Price" width="118px"></asp:Label>
+        &nbsp;<asp:TextBox ID="txtPrice" runat="server" width="134px"></asp:TextBox>
         <br />
-            <asp:CheckBox ID="chkAvailability" runat="server" Text="Availability" />
+            <asp:CheckBox ID="chkAvailability" runat="server" Text="Availabile" />
             <br />
-            <asp:Label ID="lblReleaseDate" runat="server" Text="Release Date"></asp:Label>
-            &nbsp;<asp:TextBox ID="txtlReleaseDate" runat="server"></asp:TextBox>
+            <asp:Label ID="lblReleaseDate" runat="server" Text="Release Date" width="118px"></asp:Label>
+            &nbsp;<asp:TextBox ID="txtlReleaseDate" runat="server" width="134px"></asp:TextBox>
             <br />
-            <asp:Label ID="lblAgeRating" runat="server" Text="Age Rating" width="80px"></asp:Label>
-            &nbsp;<asp:TextBox ID="txtAgeRating" runat="server"></asp:TextBox>
+            <asp:Label ID="lblAgeRating" runat="server" Text="Age Rating" width="118px"></asp:Label>
+            &nbsp;<asp:TextBox ID="txtAgeRating" runat="server" width="134px"></asp:TextBox>
             <br />
             <br />
             <asp:Label ID="lblError" runat="server"></asp:Label>

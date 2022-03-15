@@ -17,10 +17,18 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         //create a new instance of clsStock
         clsStock AnStock = new clsStock();
-        //capture the house no
+
+        //capture the game name
+        AnStock.GameID = Convert.ToInt32(txtGameID.Text);
         AnStock.GameNm = txtGameName.Text;
+        AnStock.Price = Convert.ToInt32(txtPrice.Text);
+        AnStock.Active = Convert.ToBoolean(chkAvailability.Checked);
+        AnStock.DateAdded = Convert.ToDateTime(txtlReleaseDate.Text);
+        AnStock.AgeRat = Convert.ToInt32(txtAgeRating.Text);
+
         //store the address in the session object
         Session["AnStock"] = AnStock;
+
         //navigate to the viewer page
         Response.Redirect("StockViewer.aspx");
 

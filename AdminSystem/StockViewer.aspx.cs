@@ -12,9 +12,17 @@ public partial class _1Viewer : System.Web.UI.Page
     {
         //create a new instance of clsStock
         clsStock AnStock = new clsStock();
+
         //get the data from the session object
         AnStock = (clsStock)Session["AnStock"];
-        //display the house number for this entry
-        Response.Write(AnStock.GameNm);
+
+        //display the entry
+        Response.Write("Game ID : " + AnStock.GameID + "<br />");
+        Response.Write("Game Name : " + AnStock.GameNm + "<br />");
+        Response.Write("Price : " + AnStock.Price + "<br />");
+        Response.Write("Stock is Available? " + AnStock.Active + "<br />");
+        Response.Write("Release Date : " + AnStock.DateAdded + "<br />");
+        Response.Write("Age Rating : " + AnStock.AgeRat + "<br />");
+
     }
 }
