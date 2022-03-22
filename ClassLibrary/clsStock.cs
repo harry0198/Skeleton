@@ -3,111 +3,102 @@
 namespace ClassLibrary
 {
     public class clsStock
-
     {
-        //private date added data member
-        private int mGameID;
-        //public property for date added
+ 
+    
+
+        private Int32 mGameID;
         public int GameID
         {
             get
             {
-                //this line of code sends data out of the property
                 return mGameID;
             }
 
             set
             {
-                //this line of code allows data into the property
                 mGameID = value;
             }
         }
 
-        //private date added data member
-        private string mGameNm;
-        //public property for date added
-        public string GameNm
+
+
+        private string mGameName;
+        public string GameName
         {
             get
             {
-                //this line of code sends data out of the property
-                return mGameNm;
+                return mGameName;
             }
 
             set
             {
-                //this line of code allows data into the property
-                mGameNm = value;
+                mGameName = value;
             }
         }
 
-        //private date added data member
-        private int mPrice;
-        //public property for date added
+
+
+        private Int32 mPrice;
         public int Price
         {
             get
             {
-                //this line of code sends data out of the property
                 return mPrice;
             }
 
             set
             {
-                //this line of code allows data into the property
                 mPrice = value;
             }
         }
 
 
+
         //private date added data member
-        private bool mActive;
+        private bool mAvailability;
         //public property for date added
-        public bool Active
+        public bool Availability
         {
             get
             {
                 //return the private data
-                return mActive;
+                return mAvailability;
             }
             set
             {
                 //set the private data
-                mActive = value;
+                mAvailability = value;
             }
         }
 
-        //private date added data member
-        private DateTime mDateAdded;
-        //public property for date added
-        public DateTime DateAdded
+
+
+        private DateTime mReleaseDate;
+        public DateTime ReleaseDate
         {
             get
             {
-                //return the private data
-                return mDateAdded;
+                return mReleaseDate;
             }
             set
             {
-                //set the private data
-                mDateAdded = value;
+                mReleaseDate = value;
             }
         }
 
-        //private date added data member
-        private int mAgeRat;
-        //public property for date added
-        public int AgeRat
+
+
+        private Int32 mAgeRating;
+        public int AgeRating
         {
             get
             {
-                //return the private data
-                return mAgeRat;
+                return mAgeRating;
             }
             set
             {
-                //set the private data
-                mAgeRat = value;
+                mAgeRating = value;
             }
         }
 
@@ -115,24 +106,34 @@ namespace ClassLibrary
 
 
 
-
-
-
-
-
-        public bool Find(string gameNm)
+                    public bool Find(int GameID)
         {
-            //set the private data members to the test data value
-            mGameID = 25;
-            mGameNm = "Basketball";
-            mPrice = 25;
-            mActive = true;
-            mDateAdded = Convert.ToDateTime("16/09/2015");
-            mAgeRat = 15;
+                // Create an instance of the data connection
+                clsDataConnection DB = new clsDataConnection();
+                // add param for customer id
+                 DB.AddParameter("@GameID", GameID);
+                // execute stored proc
+                DB.Execute("sproc_tblStock_FilterbyGameID");
+                // If one record is found
+                if (DB.Count == 1)
+                {
+                mGameID = Convert.ToInt32(DB.DataTable.Rows[0]["GameID"]);
+                mGameName = Convert.ToString(DB.DataTable.Rows[0]["GameName"]);
+                mPrice = Convert.ToInt32(DB.DataTable.Rows[0]["Price"]);
+                mAvailability = Convert.ToBoolean(DB.DataTable.Rows[0]["Availability"]);
+                mReleaseDate = Convert.ToDateTime(DB.DataTable.Rows[0]["ReleaseDate"]);
+                mAgeRating = Convert.ToInt32(DB.DataTable.Rows[0]["AgeRating"]);
 
-            //always return true
-            return true;
+
+                // Return true indicating everything worked ok
+                return true;
+            }
+                else
+            {
+                    // return false indicating a proble
+                    return false;
+            }
         }
+    }
 
     }
-}

@@ -22,7 +22,7 @@ namespace Testing3
             //create an instance of the class we want to create
             clsStock Stock = new clsStock();
             //create some test data to assign to the property
-            Int32 TestData = 45;
+            Int32 TestData = 6;
             //assign the data to the property
             Stock.GameID = TestData;
             //test to see that the two values are the same
@@ -35,11 +35,11 @@ namespace Testing3
             //create an instance of the class we want to create
             clsStock Stock = new clsStock();
             //create some test data to assign to the property
-            string TestData = "Basketball";
+            string TestData = "Test Name";
             //assign the data to the property
-            Stock.GameNm = TestData;
+            Stock.GameName = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(Stock.GameNm, TestData);
+            Assert.AreEqual(Stock.GameName, TestData);
         }
 
         [TestMethod]
@@ -48,7 +48,7 @@ namespace Testing3
             //create an instance of the class we want to create
             clsStock Stock = new clsStock();
             //create some test data to assign to the property
-            Int32 TestData = 45;
+            Int32 TestData = 12;
             //assign the data to the property
             Stock.Price = TestData;
             //test to see that the two values are the same
@@ -63,9 +63,9 @@ namespace Testing3
             //create some test data to assign to the property
             Boolean TestData = true;
             //assign the data to the property
-            Stock.Active = TestData;
+            Stock.Availability = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(Stock.Active, TestData);
+            Assert.AreEqual(Stock.Availability, TestData);
         }
 
         [TestMethod]
@@ -76,9 +76,9 @@ namespace Testing3
             //create some test data to assign to the property
             DateTime TestData = DateTime.Now.Date;
             //assign the data to the property
-            Stock.DateAdded = TestData;
+            Stock.ReleaseDate = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(Stock.DateAdded, TestData);
+            Assert.AreEqual(Stock.ReleaseDate, TestData);
         }
 
         [TestMethod]
@@ -87,25 +87,25 @@ namespace Testing3
             //create an instance of the class we want to create
             clsStock AnAddress = new clsStock();
             //create some test data to assign to the property
-            Int32 TestData = 7;
+            Int32 TestData = 12;
             //assign the data to the property
-            AnAddress.AgeRat = TestData;
+            AnAddress.AgeRating = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(AnAddress.AgeRat, TestData);
+            Assert.AreEqual(AnAddress.AgeRating, TestData);
         }
 
         [TestMethod]
         public void FindMethodOK()
         {
-        
+            //Create an instance of the class we want to create
             clsStock AnStock = new clsStock();
-            
+            // Boolean variable to store results of validation
             Boolean Found = false;
-
-            String GameNm = "Basketball";
-
-            Found = AnStock.Find(GameNm);
-
+            // Create some test data to use with the method
+            Int32 GameID = 6;
+            // Invoke the method
+            Found = AnStock.Find(GameID);
+            // Test to see if the result is true
             Assert.IsTrue(Found);
         }
 
@@ -119,11 +119,11 @@ namespace Testing3
             //boolean variable to record if data is OK (asume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            String GameNm = "Basketball";
+            Int32 GameID = 6;
             //invoke the method
-            Found = AnStock.Find(GameNm);
+            Found = AnStock.Find(GameID);
             //check the address no
-            if (AnStock.GameID != 25)
+            if (AnStock.GameID != 6)
             {
                 OK = false;
             }
@@ -132,7 +132,7 @@ namespace Testing3
         }
 
         [TestMethod]
-        public void TestGameNmFound()
+        public void TestGameNameFound()
         {
             //create an instance of the class we want to create
             clsStock AnStock = new clsStock();
@@ -141,11 +141,11 @@ namespace Testing3
             //boolean variable to record if data is OK (asume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            String GameNm = "Basketball";
+            Int32 GameID = 6;
             //invoke the method
-            Found = AnStock.Find(GameNm);
+            Found = AnStock.Find(GameID);
             //check the address no
-            if (AnStock.GameNm != "Basketball")
+            if (AnStock.GameName != "Test Name")
             {
                 OK = false;
             }
@@ -163,11 +163,11 @@ namespace Testing3
             //boolean variable to record if data is OK (asume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            String GameNm = "Basketball";
+            Int32 GameID = 6;
             //invoke the method
-            Found = AnStock.Find(GameNm);
+            Found = AnStock.Find(GameID);
             //check the address no
-            if (AnStock.Price != 25)
+            if (AnStock.Price != 12)
             {
                 OK = false;
             }
@@ -185,11 +185,11 @@ namespace Testing3
             //boolean variable to record if data is OK (asume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            String GameNm = "Basketball";
+            Int32 GameID = 6;
             //invoke the method
-            Found = AnStock.Find(GameNm);
+            Found = AnStock.Find(GameID);
             //check the address no
-            if (AnStock.Active != true)
+            if (AnStock.Availability != true)
             {
                 OK = false;
             }
@@ -207,11 +207,11 @@ namespace Testing3
             //boolean variable to record if data is OK (asume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            String GameNm = "Basketball";
+            Int32 GameID = 6;
             //invoke the method
-            Found = AnStock.Find(GameNm);
+            Found = AnStock.Find(GameID);
             //check the address no
-            if (AnStock.DateAdded != Convert.ToDateTime("16/09/2015"))
+            if (AnStock.ReleaseDate != Convert.ToDateTime("12/12/2022"))
             {
                 OK = false;
             }
@@ -219,8 +219,9 @@ namespace Testing3
             Assert.IsTrue(OK);
         }
 
+
         [TestMethod]
-        public void TestAgeRatFound()
+        public void TestAgeRatingFound()
         {
             //create an instance of the class we want to create
             clsStock AnStock = new clsStock();
@@ -229,11 +230,11 @@ namespace Testing3
             //boolean variable to record if data is OK (asume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            String GameNm = "Basketball";
+            Int32 GameID = 6;
             //invoke the method
-            Found = AnStock.Find(GameNm);
+            Found = AnStock.Find(GameID);
             //check the address no
-            if (AnStock.AgeRat != 15)
+            if (AnStock.AgeRating != 12)
             {
                 OK = false;
             }
