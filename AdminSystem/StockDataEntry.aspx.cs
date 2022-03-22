@@ -20,11 +20,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
         //capture the game name
         AnStock.GameID = Convert.ToInt32(txtGameID.Text);
-        AnStock.GameNm = txtGameName.Text;
+        AnStock.GameName = txtGameName.Text;
         AnStock.Price = Convert.ToInt32(txtPrice.Text);
-        AnStock.Active = Convert.ToBoolean(chkAvailability.Checked);
-        AnStock.DateAdded = Convert.ToDateTime(txtlReleaseDate.Text);
-        AnStock.AgeRat = Convert.ToInt32(txtAgeRating.Text);
+        AnStock.Availability = Convert.ToBoolean(chkAvailability.Checked);
+        AnStock.ReleaseDate = Convert.ToDateTime(txtlReleaseDate.Text);
+        AnStock.AgeRating = Convert.ToInt32(txtAgeRating.Text);
 
         //store the address in the session object
         Session["AnStock"] = AnStock;
