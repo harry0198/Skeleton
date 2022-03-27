@@ -33,13 +33,7 @@ namespace ClassLibrary
                 // record error
                 Error = Error + "The customer id must be less than 6 characters :";
             }
-            try
-            {
-                Convert.ToInt32(customerId);
-            } catch (FormatException)
-            {
-                Error = Error + "The Customer id must be a number! : ";
-            }
+            
             // copy datetime val
             try
             {
