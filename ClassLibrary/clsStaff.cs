@@ -49,6 +49,12 @@ namespace ClassLibrary
                 mStaffID = value;
             }
         }
+
+        public string Valid(string staffID, string staffUsername, string staffPassword, string role, string admin, string startDate)
+        {
+            return "";
+        }
+
         public string Username 
         {
             get 
