@@ -209,7 +209,7 @@ namespace Testing1
             //invoke the method
             Found = AnStaff.Find(StaffID);
             //check the property
-            if (AnStaff.Role != "ExampleRole")
+            if (AnStaff.Role != "Example Role")
             {
                 OK = false;
             }

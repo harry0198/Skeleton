@@ -24,6 +24,7 @@
         <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 150px; top: 360px; position: absolute"></asp:Label>
         <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 413px; top: 291px; position: absolute" Text="OK" />
         <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 468px; top: 290px; position: absolute" Text="Cancel" />
+        <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" style="z-index: 1; left: 475px; top: 125px; position: absolute" Text="Find" />
     </form>
 </body>
 </html>

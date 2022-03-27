@@ -11,6 +11,9 @@ namespace ClassLibrary
         private String mPassword;
         private String mRole;
         private Boolean mAdmin;
+
+        public clsStaff() { }
+
         public bool Admin
         {
             get
@@ -84,7 +87,7 @@ namespace ClassLibrary
             //create an instance of the data connection
             clsDataConnection DB = new clsDataConnection();
             //add the parameter for the address no to search for
-            DB.AddParameter("@StaffID", StaffID);
+            DB.AddParameter("@StaffID", staffID);
             //execute the stored procedure
             DB.Execute("sproc_tblStaff_FilterbyStaffID");
             //if one record is found (there should be either one or zero!)
