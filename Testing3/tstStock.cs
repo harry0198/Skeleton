@@ -7,6 +7,13 @@ namespace Testing3
     [TestClass]
     public class tstStock
     {
+        //good test data
+        //create some test data to pass to the method
+        string GameName = "Test Name";
+        string ReleaseDate = DateTime.Now.Date.ToString();
+
+
+
     [TestMethod]
         public void InstanceOK()
         {
@@ -85,13 +92,13 @@ namespace Testing3
         public void AgeRatingOK()
         {
             //create an instance of the class we want to create
-            clsStock AnAddress = new clsStock();
+            clsStock AnStock = new clsStock();
             //create some test data to assign to the property
             Int32 TestData = 12;
             //assign the data to the property
-            AnAddress.AgeRating = TestData;
+            AnStock.AgeRating = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(AnAddress.AgeRating, TestData);
+            Assert.AreEqual(AnStock.AgeRating, TestData);
         }
 
         [TestMethod]
@@ -240,7 +247,265 @@ namespace Testing3
             }
             //test to see the result is correct
             Assert.IsTrue(OK);
+
+            
+                
+            }
+
+
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //string variable to store any error mesage
+            String Error = "";
+            //invoke the method
+            Error = AnStock.Valid(GameName, ReleaseDate);
+            //test to see that the two values are the same
+            Assert.AreEqual(Error, "");
         }
+
+
+
+
+
+
+
+
+        //Validation For Game Name
+
+        [TestMethod]
+        public void GameNameMinLessOne()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //string variable to store any error mesage
+            String Error = "";
+            //create some test data to pass the method
+            string GameName = ""; //this should trigger an error
+            //invoke the method
+            Error = AnStock.Valid(GameName, ReleaseDate);
+            //test to see that the two values are the same
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void GameNameMin()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //string variable to store any error mesage
+            String Error = "";
+            //create some test data to pass the method
+            string GameName = "a"; //this should trigger an error
+            //invoke the method
+            Error = AnStock.Valid(GameName, ReleaseDate);
+            //test to see that the two values are the same
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void GameNameMinPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //string variable to store any error mesage
+            String Error = "";
+            //create some test data to pass the method
+            string GameName = "aa";
+            //invoke the method
+            Error = AnStock.Valid(GameName, ReleaseDate);
+            //test to see that the two values are the same
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void GameNameMaxLessOne()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //string variable to store any error mesage
+            String Error = "";
+            //create some test data to pass the method
+            string GameName = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            //invoke the method
+            Error = AnStock.Valid(GameName, ReleaseDate);
+            //test to see that the two values are the same
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void GameNameMax()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //string variable to store any error mesage
+            String Error = "";
+            //create some test data to pass the method
+            string GameName = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            //invoke the method
+            Error = AnStock.Valid(GameName, ReleaseDate);
+            //test to see that the two values are the same
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void GameNameMaxPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //string variable to store any error mesage
+            String Error = "";
+            //create some test data to pass the method
+            string GameName = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            //invoke the method
+            Error = AnStock.Valid(GameName, ReleaseDate);
+            //test to see that the two values are the same
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void GameNameMid()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //string variable to store any error mesage
+            String Error = "";
+            //create some test data to pass the method
+            string GameName = "aaaaaaaaaaaaaaaaaaaaaaaaa";
+            //invoke the method
+            Error = AnStock.Valid(GameName, ReleaseDate);
+            //test to see that the two values are the same
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void GameNameExtremeMax()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //string variable to store any error mesage
+            String Error = "";
+            //create some test data to pass the method
+            string GameName = "";
+            GameName = GameName.PadRight(500, 'a');
+            //invoke the method
+            Error = AnStock.Valid(GameName, ReleaseDate);
+            //test to see that the two values are the same
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+
+        //Validation For ReleaseDate
+
+        [TestMethod]
+        public void ReleaseDateExtremeMin()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //string variable to store any error mesage
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date totodays date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is less 100 years
+            TestDate = TestDate.AddYears(-100);
+            //convert the date variable to a string variable
+            string ReleaseDate = TestDate.ToString();
+            //invoke the method
+            Error = AnStock.Valid(GameName, ReleaseDate);
+            //test to see that the two values are the same
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ReleaseDateMinLessOne()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //string variable to store any error mesage
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date totodays date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is less 100 years
+            TestDate = TestDate.AddDays(-1);
+            //convert the date variable to a string variable
+            string ReleaseDate = TestDate.ToString();
+            //invoke the method
+            Error = AnStock.Valid(GameName, ReleaseDate);
+            //test to see that the two values are the same
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ReleaseDateMin()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //string variable to store any error mesage
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date totodays date
+            TestDate = DateTime.Now.Date;
+            //convert the date variable to a string variable
+            string ReleaseDate = TestDate.ToString();
+            //invoke the method
+            Error = AnStock.Valid(GameName, ReleaseDate);
+            //test to see that the two values are the same
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ReleaseDateMinPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date totodays date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is plus 1 day
+            TestDate = TestDate.AddDays(1);
+            //convert the date variable to a string variable
+            string ReleaseDate = TestDate.ToString();
+            //invoke the method
+            Error = AnStock.Valid(GameName, ReleaseDate);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ReleaseDateExtremeMax()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //string variable to store any error mesage
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date totodays date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is less 100 years
+            TestDate = TestDate.AddYears(100);
+            //convert the date variable to a string variable
+            string ReleaseDate = TestDate.ToString();
+            //invoke the method
+            Error = AnStock.Valid(GameName, ReleaseDate);
+            //test to see that the two values are the same
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+
+
 
 
 
