@@ -134,6 +134,57 @@ namespace ClassLibrary
                     return false;
             }
         }
+
+
+
+
+
+        public string Valid(string gameName, string releaseDate)
+        {
+            //create a string variable to store the error
+            String Error = "";
+            //if the GameName is blank
+            if (gameName.Length == 0)
+            {
+                //record the error
+                Error = Error + "The game name may not be blank : ";
+            }
+            //if the house number is greater than 50
+            if (gameName.Length > 50)
+            {
+                Error = Error + "The game name must be less than 50 characters : ";
+            }
+
+            //copy the releaseDate value to the DateTemp variable
+            ReleaseDate = Convert.ToDateTime(releaseDate);
+            if (ReleaseDate < DateTime.Now.Date)
+            {
+                //record the error
+                Error = Error + "The date cannot be in the past : ";
+            }
+            //check to see if the date is greater than todays date
+            if (ReleaseDate > DateTime.Now.Date)
+            {
+                //record the error
+                Error = Error + "The date cannot be in the future : ";
+            }
+
+
+            //return any error messages
+            return Error;
+        }
+
+
+
+
+
     }
+
+
+
+
+
+
+
 
     }
