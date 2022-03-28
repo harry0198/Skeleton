@@ -18,17 +18,43 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         //create a new instance of clsStaff
         clsStaff AnStaff = new clsStaff();
-        //capture the Staff Values
-        AnStaff.Username = txtUsername.Text;
-        AnStaff.Password = txtPassword.Text;
-        AnStaff.Role = txtRole.Text;
-        AnStaff.StartDate = Convert.ToDateTime(txtStartDate.Text);
-        AnStaff.Admin = chkAdmin.Checked;
-        AnStaff.StaffID = Convert.ToInt32(txtStaffID.Text);
-        //store the Username in the Session Object
-        Session["AnStaff"] = AnStaff;
-        //naviage to the viewer page
-        Response.Redirect("StaffViewer.aspx");
+        //capture the username
+        string Username = txtUsername.Text;
+        //capture the password
+        string Password = txtPassword.Text;
+        //capture the role
+        string Role = txtRole.Text;
+        //capture the start date
+        string StartDate = txtStartDate.Text;
+        //capture staff ID
+        string StaffID = txtStartDate.Text;
+        //capture the admin
+        string Admin = chkAdmin.Checked.ToString();
+        //variable to store error message
+        string Error = "";
+        //validate the data
+        Error = AnStaff.Valid(StaffID, Username, Password, Role, Admin, StartDate);
+        if (Error == "")
+        {
+            //capture the ID
+            AnStaff.StaffID = Convert.ToInt32(StaffID);
+            //capture the username
+            AnStaff.Username = Username;
+            //capture the password
+            AnStaff.Password = Password;
+            //capture the role
+            AnStaff.Role = Role;
+            //capture the start date
+            AnStaff.StartDate = Convert.ToDateTime(StartDate);
+            //capture the admin
+            AnStaff.Admin = Convert.ToBoolean(Admin);
+            Session["AnStaff"] = AnStaff;
+            Response.Write("StaffViewer.aspx");
+
+        } else
+        {
+            lblError.Text = Error;
+        }
 
         
     }

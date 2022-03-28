@@ -52,7 +52,88 @@ namespace ClassLibrary
 
         public string Valid(string staffID, string staffUsername, string staffPassword, string role, string admin, string startDate)
         {
-            return "";
+            //Create string var to store error
+            String Error = "";
+            //temp vars
+            DateTime DateTemp;
+            //if staffID is blank
+            if (staffID.Length == 0)
+            {
+                //record error
+                Error = Error + "The Staff ID may not be blank: ";
+            }
+            //if staffID is greater than 6 chars
+            if (staffID.Length > 6)
+            {
+                //record error
+                Error = Error + "The Staff ID must be less than 6 characters: ";
+            }
+
+            //copy datetime val
+            try
+            {
+                DateTemp = Convert.ToDateTime(startDate);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    //record error
+                    Error = Error + "The date cannot be in the past: ";
+                }
+                //check to see if the date is greater than today's date
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    //record error
+                    Error = Error + "The date cannot be in the future: ";
+                }
+            }
+
+            catch
+            {
+                Error = Error + "The date was not a valid date: ";
+            }
+            if (staffPassword.Length == 0)
+            {
+                //record the error
+                Error = Error + "The Staff Password may not be blank: ";
+            }
+            //if the staff password is too long
+            if (staffPassword.Length > 20)
+            {
+                //record the error
+                Error = Error = "The Staff Password must be less than 20: ";
+            }
+            //if the staff username is blank
+            if (staffUsername.Length == 0)
+            {
+                //record the error
+                Error = Error + "The Staff Username may not be blank: ";
+            }
+            //if the staff username is too long 
+            if (staffUsername.Length > 20)
+            {
+                //record the error
+                Error = Error + "The Staff Username must be less than 20: ";
+            }
+            //if the staff role is blank
+            if (role.Length == 0)
+            {
+                //record the error
+                Error = Error + "The Staff Role may not be blank: ";
+            }
+            //if the staff role is too long
+            if (role.Length > 20)
+            {
+                Error = Error + "The Staff Role must be less than 20: ";
+            }
+            if (admin.ToLower().Equals("true") || admin.ToLower().Equals("false"))
+            {
+
+            } else
+            {
+                Error = Error + "The account active must be true or false : ";
+            }
+
+            //return any error message
+            return Error;
         }
 
         public string Username 
