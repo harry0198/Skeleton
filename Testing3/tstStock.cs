@@ -503,6 +503,20 @@ namespace Testing3
             Assert.AreNotEqual(Error, "");
         }
 
+        [TestMethod]
+        public void ReleaseDateInvalidData()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //string variable to store any error mesage
+            String Error = "";
+            string ReleaseDate = "this is not a date!";
+            //invoke the method
+            Error = AnStock.Valid(GameName, ReleaseDate);
+            //test to see that the two values are the same
+            Assert.AreNotEqual(Error, "");
+        }
+
 
 
 
