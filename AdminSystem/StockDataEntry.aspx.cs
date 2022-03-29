@@ -18,19 +18,39 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create a new instance of clsStock
         clsStock AnStock = new clsStock();
 
+        //capture the game id
+        string GameID = txtGameID.Text;
         //capture the game name
-        AnStock.GameID = Convert.ToInt32(txtGameID.Text);
-        AnStock.GameName = txtGameName.Text;
-        AnStock.Price = Convert.ToInt32(txtPrice.Text);
-        AnStock.Availability = Convert.ToBoolean(chkAvailability.Checked);
-        AnStock.ReleaseDate = Convert.ToDateTime(txtReleaseDate.Text);
-        AnStock.AgeRating = Convert.ToInt32(txtAgeRating.Text);
+        string GameName = txtGameName.Text;
+        //capture the price
+        string Price = txtPrice.Text;
+        //capture the availability
+        string Availability = chkAvailability.Text;
+        //capture the release date
+        string ReleaseDate = txtReleaseDate.Text;
+        //capture the age rating
+        string AgeRating = txtAgeRating.Text;
+        //variable to store any error message
+        string Error = "";
+        //validate the data
+        Error = AnStock.Valid(GameName, ReleaseDate);
+        if (Error == "")
+        {
+            AnStock.GameID = Convert.ToInt32(txtGameID.Text);
+            AnStock.GameName = txtGameName.Text;
+            AnStock.Price = Convert.ToInt32(txtPrice.Text);
+            AnStock.Availability = Convert.ToBoolean(chkAvailability.Text);
+            AnStock.ReleaseDate = Convert.ToDateTime(txtReleaseDate.Text);
+            AnStock.AgeRating = Convert.ToInt32(txtAgeRating.Text);
+            Session["AnStock"] = AnStock;
+            Response.Write("StockViewer.aspx");
+        }
+        else
+        {
+            //display the error message
+            lblError.Text = Error;
+        }
 
-        //store the address in the session object
-        Session["AnStock"] = AnStock;
-
-        //navigate to the viewer page
-        Response.Redirect("StockViewer.aspx");
 
     }
 
