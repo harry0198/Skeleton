@@ -34,7 +34,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
             Customer.Address = CustomerAddress;
             Customer.Active = Convert.ToBoolean(CustomerValid);
             Customer.DateAdded = Convert.ToDateTime(CustomerDateAdded);
-            Session["ACustomer"] = Customer;
+
+            clsCustomerCollection CustomerList = new clsCustomerCollection();
+            CustomerList.ThisCustomer = Customer;
+            CustomerList.Add();
+//            Session["ACustomer"] = Customer;
             Response.Write("CustomerViewer.aspx");
         } else
         {

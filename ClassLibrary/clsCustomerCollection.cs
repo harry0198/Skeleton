@@ -6,6 +6,7 @@ namespace ClassLibrary
     public class clsCustomerCollection
     {
         List<clsCustomer> mCustomerList = new List<clsCustomer>();
+        clsCustomer mthisCustomer = new clsCustomer();
         
         public clsCustomerCollection()
         {
@@ -42,7 +43,16 @@ namespace ClassLibrary
                 mCustomerList = value;
             }
         }
-        public clsCustomer ThisCustomer { get; set; }
+        public clsCustomer ThisCustomer { 
+            get
+            {
+                return mthisCustomer;
+            }
+            set
+            {
+                mthisCustomer = value;
+            }
+        }
         public int Count {
             get
             {
@@ -52,6 +62,18 @@ namespace ClassLibrary
             {
 
             }
+        }
+
+        public int Add()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@Username", mthisCustomer.Username);
+            DB.AddParameter("@Password", mthisCustomer.Password);
+            DB.AddParameter("@Address", mthisCustomer.Address);
+            DB.AddParameter("@DateAdded", mthisCustomer.DateAdded);
+            DB.AddParameter("@Active", mthisCustomer.Active);
+
+            return DB.Execute("sproc_tblCustomer_Insert");
         }
     }
 }
