@@ -88,5 +88,12 @@ namespace ClassLibrary
 
             DB.Execute("sproc_tblCustomer_Update");
         }
+
+        public void Delete()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@CustomerID", mthisCustomer.ID);
+            DB.Execute("sproc_tblCustomer_Delete");
+        }
     }
 }

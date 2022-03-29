@@ -117,5 +117,31 @@ namespace Testing4
             AllCustomers.ThisCustomer.Find(PrimaryKey);
             Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
         }
+
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            clsCustomer TestItem = new clsCustomer();
+            Int32 PrimaryKey = 0;
+
+            TestItem.Active = true;
+            TestItem.Password = "Pass";
+            TestItem.Username = "Username";
+            TestItem.DateAdded = DateTime.Now.Date;
+            TestItem.Address = "LE2 3AB";
+
+            AllCustomers.ThisCustomer = TestItem;
+
+            PrimaryKey = AllCustomers.Add();
+           
+            AllCustomers.ThisCustomer.Find(PrimaryKey);
+
+            AllCustomers.Delete();
+
+            Boolean Found = AllCustomers.ThisCustomer.Find(PrimaryKey);
+
+            Assert.IsFalse(Found);
+        }
     }
 }
