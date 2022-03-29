@@ -23,7 +23,7 @@
         <asp:CheckBox ID="cbxCustomerActive" runat="server" style="z-index: 1; left: 7px; top: 185px; position: absolute" Text="Active" />
         <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 10px; top: 225px; position: absolute"></asp:Label>
         <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 10px; top: 266px; position: absolute" Text="OK" />
-        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 56px; top: 266px; position: absolute" Text="Cancel" />
+        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 56px; top: 266px; position: absolute" Text="Cancel" OnClick="btnCancel_Click" />
         <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" style="z-index: 1; left: 288px; top: 32px; position: absolute" Text="Find" />
     </form>
 </body>

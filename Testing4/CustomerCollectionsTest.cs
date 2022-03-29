@@ -143,5 +143,46 @@ namespace Testing4
 
             Assert.IsFalse(Found);
         }
+
+        [TestMethod]
+        public void ReportByUsernameMethodOK()
+        {
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            clsCustomerCollection FilteredCustomers = new clsCustomerCollection();
+
+            FilteredCustomers.ReportByUsername("");
+            Assert.AreEqual(AllCustomers.Count, FilteredCustomers.Count);
+
+
+        }
+
+        [TestMethod]
+        public void ReportByUsernameNoneFound()
+        {
+            clsCustomerCollection FilteredCustomers = new clsCustomerCollection();
+            FilteredCustomers.ReportByUsername("xxxxxx");
+            Assert.AreEqual(0, FilteredCustomers.Count);
+        }
+
+        [TestMethod]
+        public void ReportByUsernameTestDatFound()
+        {
+            clsCustomerCollection FilteredCustomers = new clsCustomerCollection();
+            Boolean OK = true;
+            FilteredCustomers.ReportByUsername("ExampleCustomer");
+            if (FilteredCustomers.Count == 2)
+            {
+                if (FilteredCustomers.CustomerList[0].ID != 1)
+                {
+                    OK = false;
+
+                } 
+                if (FilteredCustomers.CustomerList[1].ID != 4)
+                {
+                    OK = false;
+                }
+                Assert.IsTrue(OK);
+            }
+        }
     }
 }

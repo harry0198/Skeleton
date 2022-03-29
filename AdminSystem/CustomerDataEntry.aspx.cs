@@ -11,7 +11,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
     Int32 CustomerId;
     protected void Page_Load(object sender, EventArgs e)
     {
-        CustomerId = Convert.ToInt32(Session["AddessNo"]);
+        CustomerId = Convert.ToInt32(Session["CustomerId"]);
         if (IsPostBack == false)
         {
             if (CustomerId != -1)
@@ -70,7 +70,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             }
             
            
-            Response.Write("CustomerViewer.aspx");
+            Response.Redirect("CustomerList.aspx");
         } else
         {
             lblError.Text = Error;
@@ -108,5 +108,10 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtCustomerDateAdded.Text = ACustomer.DateAdded.ToString();
             cbxCustomerActive.Checked = ACustomer.Active;
         }
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("CustomerList.aspx");
     }
 }
