@@ -36,14 +36,26 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Error = AnStock.Valid(GameName, ReleaseDate);
         if (Error == "")
         {
+            //capture the game id
             AnStock.GameID = Convert.ToInt32(txtGameID.Text);
+            //capture the game name
             AnStock.GameName = txtGameName.Text;
+            //capture the price
             AnStock.Price = Convert.ToInt32(txtPrice.Text);
-            AnStock.Availability = Convert.ToBoolean(chkAvailability.Text);
+            //capture the availability
+            AnStock.Availability = chkAvailability.Checked;
+            //capture the release date
             AnStock.ReleaseDate = Convert.ToDateTime(txtReleaseDate.Text);
+            //capture the age rating
             AnStock.AgeRating = Convert.ToInt32(txtAgeRating.Text);
-            Session["AnStock"] = AnStock;
-            Response.Write("StockViewer.aspx");
+            //create a new instance of the address collection
+            clsStockCollection StockList = new clsStockCollection();
+            //set the ThisStock property
+            StockList.ThisStock = AnStock;
+            //add the new record
+            StockList.Add();
+            //redirect back to the listpage
+            Response.Redirect("StockList.aspx");
         }
         else
         {

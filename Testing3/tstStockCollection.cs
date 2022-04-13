@@ -90,6 +90,83 @@ namespace Testing3
         }
 
 
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            clsStockCollection AllStock = new clsStockCollection();
+
+            clsStock TestItem = new clsStock();
+
+            Int32 PrimaryKey = 0;
+
+            TestItem.GameID = 6;
+            TestItem.GameName = "Test Name";
+            TestItem.Price = 12;
+            TestItem.Availability = true;
+            TestItem.ReleaseDate = DateTime.Now.Date;
+            TestItem.AgeRating = 12;
+
+            AllStock.ThisStock = TestItem;
+
+            PrimaryKey = AllStock.Add();
+
+            TestItem.GameID = PrimaryKey;
+
+            AllStock.ThisStock.Find(PrimaryKey);
+
+            Assert.AreEqual(AllStock.ThisStock, TestItem);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
