@@ -117,11 +117,129 @@ namespace Testing3
             Assert.AreEqual(AllStock.ThisStock, TestItem);
         }
 
+        [TestMethod]
+        public void UpdateMethdOK()
+        {
+            clsStockCollection AllStock = new clsStockCollection();
 
+            clsStock TestItem = new clsStock();
 
+            Int32 PrimaryKey = 0;
 
+            TestItem.GameID = 6;
+            TestItem.GameName = "Test Name";
+            TestItem.Price = 12;
+            TestItem.Availability = true;
+            TestItem.ReleaseDate = DateTime.Now.Date;
+            TestItem.AgeRating = 12;
 
+            AllStock.ThisStock = TestItem;
 
+            PrimaryKey = AllStock.Add();
+
+            TestItem.GameID = PrimaryKey;
+
+            TestItem.GameID = 7;
+            TestItem.GameName = "Test Name Two";
+            TestItem.Price = 13;
+            TestItem.Availability = true;
+            TestItem.ReleaseDate = DateTime.Now.Date;
+            TestItem.AgeRating = 13;
+
+            AllStock.ThisStock = TestItem;
+
+            AllStock.Update();
+
+            AllStock.ThisStock.Find(PrimaryKey);
+
+            Assert.AreEqual(AllStock.ThisStock, TestItem);
+        }
+
+        [TestMethod]
+        public void DeleteMethdOK()
+        {
+            clsStockCollection AllStock = new clsStockCollection();
+
+            clsStock TestItem = new clsStock();
+
+            Int32 PrimaryKey = 0;
+
+            TestItem.GameID = 6;
+            TestItem.GameName = "Test Name";
+            TestItem.Price = 12;
+            TestItem.Availability = true;
+            TestItem.ReleaseDate = DateTime.Now.Date;
+            TestItem.AgeRating = 12;
+
+            AllStock.ThisStock = TestItem;
+
+            PrimaryKey = AllStock.Add();
+
+            TestItem.GameID = PrimaryKey;
+
+            AllStock.ThisStock.Find(PrimaryKey);
+
+            AllStock.Delete();
+
+            Boolean Found = AllStock.ThisStock.Find(PrimaryKey);
+
+            Assert.IsFalse(Found);
+        }
+
+        [TestMethod]
+        public void ReportbyGameNameMethodOK()
+        {
+            //create an instance of the class containing unfiltered results
+            clsStockCollection AllStock = new clsStockCollection();
+            //create an instance of the filtered data
+            clsStockCollection FilteredStock = new clsStockCollection();
+            //apply a blank string (should return all records);
+            FilteredStock.ReportByGameName("");
+            //test to see that the two values are the same
+            Assert.AreEqual(AllStock.Count, FilteredStock.Count);
+        }
+
+        [TestMethod]
+        public void ReportByGameNameNoneFound()
+        {
+            //create an instance of the class containing unfiltered results
+            clsStockCollection FilteredStock = new clsStockCollection();
+            //apply a game name that doesnt exist
+            FilteredStock.ReportByGameName("xxxxxx");
+            //test to see that there are no records
+            Assert.AreEqual(0, FilteredStock.Count);
+        }
+
+        [TestMethod]
+        public void ReportByGameNameTestDataFound()
+        {
+            //create an instance of the filtered data
+            clsStockCollection FilteredStock = new clsStockCollection();
+            //var to store outcome
+            Boolean OK = true;
+            //apply a game name doesnt exist
+            FilteredStock.ReportByGameName("Report");
+            //check that the correct number of records are found
+            if (FilteredStock.Count == 2)
+            {
+                //check that the first record ID is 24
+                if (FilteredStock.StockList[0].GameID != 24)
+                {
+                    OK = false;
+                }
+                //check that the first record ID 25
+                if (FilteredStock.StockList[1].GameID != 25)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            //test to see that there are no records
+            Assert.IsTrue(OK);
+        }
 
 
 

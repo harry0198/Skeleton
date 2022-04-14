@@ -8,9 +8,36 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    //variable to store the primary key with page level scope
+    Int32 GameID;
     protected void Page_Load(object sender, EventArgs e)
     {
+        //get the number of the stock to be processed
+        GameID = Convert.ToInt32(Session["GameID"]);
+        if (IsPostBack == false)
+        {
+            //if this is not a new record
+            if (GameID != -1)
+            {
+                //display the current data for the record
+                DisplayStock();
+            }
+        }
+    }
 
+    void DisplayStock()
+    {
+        //create an instance of the address book
+        clsStockCollection StockBook = new clsStockCollection();
+        //find the record to update
+        StockBook.ThisStock.Find(GameID);
+        //display the data for this record
+        txtGameID.Text = StockBook.ThisStock.GameID.ToString();
+        txtGameName.Text = StockBook.ThisStock.GameName.ToString();
+        txtPrice.Text = StockBook.ThisStock.Price.ToString();
+        txtAgeRating.Text = StockBook.ThisStock.AgeRating.ToString();
+        txtReleaseDate.Text = StockBook.ThisStock.ReleaseDate.ToString();
+        chkAvailability.Checked = StockBook.ThisStock.Availability;
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
@@ -62,6 +89,9 @@ public partial class _1_DataEntry : System.Web.UI.Page
             //display the error message
             lblError.Text = Error;
         }
+
+
+
 
 
     }
