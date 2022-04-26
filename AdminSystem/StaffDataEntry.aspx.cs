@@ -8,12 +8,38 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    //variable to store the primary key with page level scope
+    Int32 StaffID;
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        //GET THE NUMBER OF THE ADDRESS TO BE PROCESSED
+        StaffID = Convert.ToInt32(Session["StaffID"]);
+        if (IsPostBack == false)
+        {
+            //if this is not a new record
+            if (StaffID != -1)
+            {
+                //display the current data for the record
+                DisplayStaff();
+            }
+        }
     }
 
-   
+    private void DisplayStaff()
+    {
+        //create an instance of the address book
+        clsStaffCollection AllStaff = new clsStaffCollection();
+        //find the record to update
+        AllStaff.ThisStaff.Find(StaffID);
+        //display teh data for this record
+        txtStaffID.Text = AllStaff.ThisStaff.StaffID.ToString();
+        txtUsername.Text = AllStaff.ThisStaff.Username;
+        txtPassword.Text = AllStaff.ThisStaff.Password;
+        txtRole.Text = AllStaff.ThisStaff.Role;
+        txtStartDate.Text = AllStaff.ThisStaff.StartDate.ToString();
+        chkAdmin.Checked = AllStaff.ThisStaff.Admin;
+    }
+
     protected void btnOK_Click(object sender, EventArgs e)
     {
         //create a new instance of clsStaff
@@ -48,8 +74,30 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AnStaff.StartDate = Convert.ToDateTime(StartDate);
             //capture the admin
             AnStaff.Admin = Convert.ToBoolean(Admin);
-            Session["AnStaff"] = AnStaff;
-            Response.Write("StaffViewer.aspx");
+            //create a new instance of the address collection
+            clsStaffCollection StaffList = new clsStaffCollection();
+
+            //if this is a new record i.e. Addressno = -1 then add the data
+            if (Convert.ToInt32(StaffID) == -1)
+            {
+                //set the ThisStaff property
+                StaffList.ThisStaff = AnStaff;
+                //add the new record
+                StaffList.Add();
+            }
+            //otherwise it must be an update
+            else
+            {
+                //find the record to update
+                StaffList.ThisStaff.Find(Convert.ToInt32(StaffID));
+                //set the ThisStaff Property
+                StaffList.ThisStaff = AnStaff;
+                //update the record
+                StaffList.Update();
+            }
+            //redirect back to the listpage
+            Response.Redirect("StaffList.aspx");
+     
 
         } else
         {

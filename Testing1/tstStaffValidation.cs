@@ -131,7 +131,7 @@ namespace Testing1
             //invoke the method
             Error = AnStaff.Valid(StaffID, StaffUsername, StaffPassword, Role, Admin, StartDate);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
@@ -147,7 +147,7 @@ namespace Testing1
             //invoke the method
             Error = AnStaff.Valid(StaffID, StaffUsername, StaffPassword, Role, Admin, StartDate);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
@@ -187,7 +187,7 @@ namespace Testing1
             //invoke the method
             Error = AnStaff.Valid(StaffID, StaffUsername, StaffPassword, Role, Admin, StartDate);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
@@ -227,7 +227,7 @@ namespace Testing1
             //invoke the method
             Error = AnStaff.Valid(StaffID, StaffUsername, StaffPassword, Role, Admin, StartDate);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
@@ -248,7 +248,7 @@ namespace Testing1
             //invoke the method
             Error = AnStaff.Valid(StaffID, StaffUsername, StaffPassword, Role, Admin, StartDate);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
@@ -263,7 +263,7 @@ namespace Testing1
             //invoke the method
             Error = AnStaff.Valid(StaffID, StaffUsername, StaffPassword, Role, Admin, StartDate);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
@@ -278,7 +278,7 @@ namespace Testing1
             //invoke the method
             Error = AnStaff.Valid(StaffID, StaffUsername, StaffPassword, Role, Admin, StartDate);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
@@ -368,7 +368,7 @@ namespace Testing1
             //invoke the method
             Error = AnStaff.Valid(StaffID, StaffUsername, StaffPassword, Role, Admin, StartDate);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
@@ -458,7 +458,7 @@ namespace Testing1
             //invoke the method
             Error = AnStaff.Valid(StaffID, StaffUsername, StaffPassword, Role, Admin, StartDate);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
@@ -533,7 +533,7 @@ namespace Testing1
             //invoke the method
             Error = AnStaff.Valid(StaffID, StaffUsername, StaffPassword, Role, Admin, StartDate);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
@@ -578,7 +578,7 @@ namespace Testing1
             //invoke the method
             Error = AnStaff.Valid(StaffID, StaffUsername, StaffPassword, Role, Admin, StartDate);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
     }
 }
