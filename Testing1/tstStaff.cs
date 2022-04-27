@@ -8,6 +8,13 @@ namespace Testing1
     public class tstStaff
     {
         [TestMethod]
+        public void TestConstruct()
+        {
+            clsStaff AnStaff = new clsStaff();
+            Assert.IsNotNull(AnStaff);
+        }
+
+        [TestMethod]
         public void InstanceOK()
         {
             //create an instancec of the class we want to create
@@ -117,11 +124,11 @@ namespace Testing1
             //boolean variable to record if data is OK (assume yes)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StaffID = 1;
+            Int32 StaffID = 4;
             //invoke the method
             Found = AnStaff.Find(StaffID);
             //check the staff ID
-            if (AnStaff.StaffID != 1)
+            if (AnStaff.StaffID != 4)
             {
                 OK = false;
             }
