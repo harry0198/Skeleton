@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-
 
 namespace ClassLibrary
-
 {
     public class clsStaffCollection
     {
@@ -12,36 +9,16 @@ namespace ClassLibrary
         List<clsStaff> mStaffList = new List<clsStaff>();
         //private data member thisStaff
         clsStaff mThisStaff = new clsStaff();
+
+        //constructor for the class 
        public clsStaffCollection()
         {
-            //var for the index
-            Int32 Index = 0;
-            //var to store the record count
-            Int32 RecordCount = 0;
             //object for data connection
             clsDataConnection DB = new clsDataConnection();
-            //execute the stored procedure
+            //execute stored procedure
             DB.Execute("sproc_tblStaff_SelectAll");
-            //get the count of records
-            RecordCount = DB.Count;
-            //while there are records to process
-            while (Index < RecordCount)
-            {
-                //create a blank staff detail
-                clsStaff AnStaff = new clsStaff();
-                //read in the fields from the current record
-                AnStaff.StaffID = Convert.ToInt32(DB.DataTable.Rows[Index]["StaffID"]);
-                AnStaff.Username = Convert.ToString(DB.DataTable.Rows[Index]["StaffUsername"]);
-                AnStaff.Password = Convert.ToString(DB.DataTable.Rows[Index]["StaffPassword"]);
-                AnStaff.Role = Convert.ToString(DB.DataTable.Rows[Index]["Role"]);
-                AnStaff.Admin = Convert.ToBoolean(DB.DataTable.Rows[Index]["Admin"]);
-                AnStaff.StartDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["StartDate"]);
-                //add the records to the private data member
-                mStaffList.Add(AnStaff);
-                //point at the next record
-                Index++;
-                
-            }
+            //populate the array list with the data table
+            PopulateArray(DB);
         }
 
 
@@ -93,7 +70,6 @@ namespace ClassLibrary
             //connect to the database
             clsDataConnection DB = new clsDataConnection();
             //set the parameters for the stored procedure
-            DB.AddParameter("@StaffID", mThisStaff.StaffID);
             DB.AddParameter("@Username", mThisStaff.Username);
             DB.AddParameter("@Password", mThisStaff.Password);
             DB.AddParameter("@Role", mThisStaff.Role);
@@ -118,5 +94,61 @@ namespace ClassLibrary
             //execute the stored procedure
             DB.Execute("sproc_tblStaff_Update");
         }
+
+        public void Delete()
+        {
+            //deletes the record pointed to by thisAddress
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the stored procedure
+            DB.AddParameter("@StaffID", mThisStaff.StaffID);
+            //execute the stored procedure
+            DB.Execute("sproc_tblStaff_Delete");
+        }
+
+        public void ReportByUser(string Username)
+        {
+        //filters the record based on a full or partial user name 
+        //connect to the database
+        clsDataConnection DB = new clsDataConnection();
+        //send the Username parameter to the database
+        DB.AddParameter("@Username", Username);
+        //execute the stored procedure
+        DB.Execute("sproc_tblStaff_FilterByUsername");
+        //populate the array list with the data table
+        PopulateArray(DB);
+        }
+
+        void PopulateArray(clsDataConnection DB)
+        {
+            //populates the array list based on the data table in the parameter
+            //var for the index
+            Int32 Index = 0;
+            //var to store the record count
+            Int32 RecordCount;
+            //get the count of records
+            RecordCount = DB.Count;
+            //clear the private array list
+            mStaffList = new List<clsStaff>();
+            //while there are records to process
+            while (Index < RecordCount)
+            {
+                //create a blank address
+                clsStaff AnStaff = new clsStaff();
+                //read in the fields from the current record
+                AnStaff.Admin = Convert.ToBoolean(DB.DataTable.Rows[Index]["StaffAdmin"]);
+                AnStaff.StaffID = Convert.ToInt32(DB.DataTable.Rows[Index]["StaffId"]);
+                AnStaff.Username = Convert.ToString(DB.DataTable.Rows[Index]["StaffUsername"]);
+                AnStaff.Password = Convert.ToString(DB.DataTable.Rows[Index]["StaffPassword"]);
+                AnStaff.Role = Convert.ToString(DB.DataTable.Rows[Index]["StaffRole"]);
+                AnStaff.StartDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["StaffStartDate"]);
+                //add the record to the private data member
+                mStaffList.Add(AnStaff);
+                //point at the next record
+                Index++;
+            }
+        }
+
+        
     }
 }

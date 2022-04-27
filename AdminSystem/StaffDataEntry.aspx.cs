@@ -9,15 +9,15 @@ using ClassLibrary;
 public partial class _1_DataEntry : System.Web.UI.Page
 {
     //variable to store the primary key with page level scope
-    Int32 StaffID;
+    Int32 StaffId;
     protected void Page_Load(object sender, EventArgs e)
     {
         //GET THE NUMBER OF THE ADDRESS TO BE PROCESSED
-        StaffID = Convert.ToInt32(Session["StaffID"]);
+        StaffId = Convert.ToInt32(Session["StaffID"]);
         if (IsPostBack == false)
         {
             //if this is not a new record
-            if (StaffID != -1)
+            if (StaffId != -1)
             {
                 //display the current data for the record
                 DisplayStaff();
@@ -25,12 +25,12 @@ public partial class _1_DataEntry : System.Web.UI.Page
         }
     }
 
-    private void DisplayStaff()
+    void DisplayStaff()
     {
         //create an instance of the address book
         clsStaffCollection AllStaff = new clsStaffCollection();
         //find the record to update
-        AllStaff.ThisStaff.Find(StaffID);
+        AllStaff.ThisStaff.Find(StaffId);
         //display teh data for this record
         txtStaffID.Text = AllStaff.ThisStaff.StaffID.ToString();
         txtUsername.Text = AllStaff.ThisStaff.Username;
@@ -59,11 +59,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //variable to store error message
         string Error = "";
         //validate the data
-        Error = AnStaff.Valid(StaffID, Username, Password, Role, Admin, StartDate);
+        Error = AnStaff.Valid("1", Username, Password, Role, Admin, StartDate);
         if (Error == "")
         {
             //capture the ID
-            AnStaff.StaffID = Convert.ToInt32(StaffID);
+            AnStaff.StaffID = StaffId;
             //capture the username
             AnStaff.Username = Username;
             //capture the password
@@ -78,7 +78,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             clsStaffCollection StaffList = new clsStaffCollection();
 
             //if this is a new record i.e. Addressno = -1 then add the data
-            if (Convert.ToInt32(StaffID) == -1)
+            if (StaffId == - 1)
             {
                 //set the ThisStaff property
                 StaffList.ThisStaff = AnStaff;
@@ -89,7 +89,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             else
             {
                 //find the record to update
-                StaffList.ThisStaff.Find(Convert.ToInt32(StaffID));
+                StaffList.ThisStaff.Find(StaffId);
                 //set the ThisStaff Property
                 StaffList.ThisStaff = AnStaff;
                 //update the record
@@ -116,19 +116,31 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //variable to store the result of the find operation
         Boolean Found = false;
         //get the primary key entered by the user
-        StaffID = Convert.ToInt32(txtStaffID.Text);
+
+        try
+        {
+            StaffID = Convert.ToInt32(txtStaffID.Text);
+        } catch (FormatException ex)
+        {
+            return;
+        }
+
         //find the record
         Found = AnStaff.Find(StaffID);
         //if found
         if (Found == true)
         {
             //display the values of the properties in the form
-            txtStaffID.Text = AnStaff.StaffID.ToString();
             txtUsername.Text = AnStaff.Username;
             txtPassword.Text = AnStaff.Password;
             txtRole.Text = AnStaff.Role;
             txtStartDate.Text = AnStaff.StartDate.ToString();
             chkAdmin.Checked = AnStaff.Admin;
         }
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("CustomerList.aspx");
     }
 }

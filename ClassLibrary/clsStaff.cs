@@ -36,7 +36,7 @@ namespace ClassLibrary
                 mStartDate = value;
             }
         }
-        public int StaffID
+        public Int32 StaffID
         {
             get
             {
@@ -184,12 +184,11 @@ namespace ClassLibrary
                 mStaffID = Convert.ToInt32(DB.DataTable.Rows[0]["StaffID"]);
                 mUsername = Convert.ToString(DB.DataTable.Rows[0]["StaffUsername"]);
                 mPassword = Convert.ToString(DB.DataTable.Rows[0]["StaffPassword"]);
-                mRole = Convert.ToString(DB.DataTable.Rows[0]["Role"]);
-                mAdmin = Convert.ToBoolean(DB.DataTable.Rows[0]["Admin"]);
-                mStartDate = Convert.ToDateTime(DB.DataTable.Rows[0]["StartDate"]);
+                mRole = Convert.ToString(DB.DataTable.Rows[0]["StaffRole"]);
+                mAdmin = Convert.ToBoolean(DB.DataTable.Rows[0]["StaffAdmin"]);
+                mStartDate = Convert.ToDateTime(DB.DataTable.Rows[0]["StaffStartDate"]);
                 //return that everything worked OK
                 return true;
-
             }
             //if no else was found
             else
